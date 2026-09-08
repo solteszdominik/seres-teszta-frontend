@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container";
 import styles from "./ProductDetailPage.module.css";
 import { products } from "@/data/product";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -81,9 +82,7 @@ export default async function ProductDetailPage({
               Elérhető
             </div>
 
-            <button type="button" className={styles.cartButton}>
-              Kosárba
-            </button>
+            <AddToCartButton product={product} className={styles.cartButton} />
 
             <div className={styles.details}>
               <div>

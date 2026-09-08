@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Container from "./Container";
 import MobileMenu from "./MobileMenu";
+import { useCart } from "@/components/cart/CartProvider";
 import styles from "./Header.module.css";
+import { shopConfig } from "@/config/shop";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -45,9 +48,20 @@ export default function Header() {
             </nav>
 
             <div className={styles.actions}>
-              <Link href="/products" className={styles.productsButton}>
-                Termékek
-              </Link>
+              {shopConfig.enabled && (
+                <Link
+                  href="/cart"
+                  className={styles.cartButton}
+                  aria-label={`Kosár, ${totalItems} termék`}
+                >
+                  <span className={styles.cartIcon}>🛒</span>
+                  <span className={styles.cartText}>Kosár</span>
+
+                  {totalItems > 0 && (
+                    <span className={styles.cartBadge}>{totalItems}</span>
+                  )}
+                </Link>
+              )}
 
               <button
                 className={styles.mobileMenuButton}

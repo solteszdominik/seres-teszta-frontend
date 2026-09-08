@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Container from "@/components/layout/Container";
 import styles from "./ContactPage.module.css";
+import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
   title: "Kapcsolat",
@@ -66,56 +67,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <form className={styles.form}>
-              <div className={styles.formHeading}>
-                <span className={styles.label}>Írj nekünk</span>
-                <h2>Üzenetküldés</h2>
-              </div>
-
-              <div className={styles.field}>
-                <label htmlFor="name">Név</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Teljes név"
-                />
-              </div>
-
-              <div className={styles.field}>
-                <label htmlFor="email">E-mail cím</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="pelda@email.hu"
-                />
-              </div>
-
-              <div className={styles.field}>
-                <label htmlFor="phone">Telefonszám</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+36 ..."
-                />
-              </div>
-
-              <div className={styles.field}>
-                <label htmlFor="message">Üzenet</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={6}
-                  placeholder="Miben segíthetünk?"
-                />
-              </div>
-
-              <button type="submit" className={styles.submitButton}>
-                Üzenet küldése
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </Container>
       </section>

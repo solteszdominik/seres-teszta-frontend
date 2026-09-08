@@ -1,0 +1,25 @@
+.button {
+  min-height: 48px;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-weight: 800;
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.button:hover {
+  background: var(--color-yolk-dark);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 520px) {
+  .button {
+    width: 100%;
+  }
+}

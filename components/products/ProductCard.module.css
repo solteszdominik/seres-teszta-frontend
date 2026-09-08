@@ -86,3 +86,25 @@
 .detailsLink:hover {
   color: var(--color-yolk-dark);
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 520px) {
+  .footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detailsLink {
+    text-align: center;
+  }
+}

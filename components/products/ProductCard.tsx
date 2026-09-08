@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./ProductCard.module.css";
 import { Product } from "@/types/product";
+import AddToCartButton from "../cart/AddToCartButton";
 
 interface ProductCardProps {
   product: Product;
@@ -27,12 +28,16 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className={styles.footer}>
           <strong>{product.price.toLocaleString("hu-HU")} Ft</strong>
 
-          <Link
-            href={`/products/${product.slug}`}
-            className={styles.detailsLink}
-          >
-            Részletek
-          </Link>
+          <div className={styles.actions}>
+            <Link
+              href={`/products/${product.slug}`}
+              className={styles.detailsLink}
+            >
+              Részletek
+            </Link>
+
+            <AddToCartButton product={product} />
+          </div>
         </div>
       </div>
     </article>
