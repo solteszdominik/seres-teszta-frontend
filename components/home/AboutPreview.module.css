@@ -1,0 +1,151 @@
+.section {
+  padding: var(--section-spacing) 0;
+  background: var(--color-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 80px;
+}
+
+.visual {
+  min-width: 0;
+}
+
+.imagePlaceholder {
+  min-height: 520px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+  background: linear-gradient(
+    145deg,
+    rgba(241, 228, 201, 0.95),
+    rgba(229, 168, 35, 0.28)
+  );
+  text-align: center;
+}
+
+.imagePlaceholder span {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.imagePlaceholder small {
+  margin-top: 10px;
+  color: var(--color-muted);
+}
+
+.content {
+  max-width: 610px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--color-yolk-dark);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.content h2 {
+  font-size: clamp(2.3rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.content p {
+  margin-top: 22px;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.values {
+  display: grid;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.valueItem {
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(24, 23, 19, 0.1);
+}
+
+.valueItem strong,
+.valueItem span {
+  display: block;
+}
+
+.valueItem strong {
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.valueItem span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  font-weight: 800;
+  transition:
+    gap var(--transition),
+    color var(--transition);
+}
+
+.link:hover {
+  gap: 14px;
+  color: var(--color-yolk-dark);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    gap: 48px;
+  }
+
+  .imagePlaceholder {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visual {
+    order: 2;
+  }
+
+  .content {
+    max-width: none;
+  }
+
+  .imagePlaceholder {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imagePlaceholder {
+    min-height: 300px;
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .content h2 {
+    font-size: 2.35rem;
+  }
+}
