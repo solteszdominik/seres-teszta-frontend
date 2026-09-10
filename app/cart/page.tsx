@@ -5,7 +5,7 @@ import Container from "@/components/layout/Container";
 import { useCart } from "@/components/cart/CartProvider";
 import styles from "./CartPage.module.css";
 import { shopConfig } from "@/config/shop";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function CartPage() {

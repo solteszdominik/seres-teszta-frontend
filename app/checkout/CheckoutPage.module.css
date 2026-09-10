@@ -83,15 +83,29 @@
   background: var(--color-white);
 }
 
+.formSectionHeading {
+  margin-top: 54px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.formSectionHeading h2 {
+  margin-top: 5px;
+  font-size: 1.65rem;
+  letter-spacing: -0.035em;
+}
+
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.field + .field,
-.fieldGrid + .field,
-.field + .fieldGrid {
+.form > .field + .field,
+.form > .fieldGrid + .field,
+.form > .field + .fieldGrid {
   margin-top: 20px;
 }
 
@@ -287,4 +301,42 @@
   .item {
     gap: 12px;
   }
+}
+
+.formError {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(180, 40, 40, 0.08);
+  color: #9d2f2f;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.terms {
+  margin-top: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.terms input {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: var(--color-yolk-dark);
+  cursor: pointer;
+}
+
+.terms a {
+  color: var(--color-black);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }

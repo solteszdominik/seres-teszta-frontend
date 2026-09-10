@@ -7,6 +7,7 @@ import Container from "@/components/layout/Container";
 import { useCart } from "@/components/cart/CartProvider";
 import { shopConfig } from "@/config/shop";
 import styles from "./CheckoutPage.module.css";
+import CheckoutForm from "@/components/checkout/CheckoutForm";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -54,116 +55,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <form className={styles.form}>
-                <div className={styles.field}>
-                  <label htmlFor="customerName">Név</label>
-                  <input
-                    id="customerName"
-                    name="customerName"
-                    type="text"
-                    placeholder="Teljes név"
-                    required
-                  />
-                </div>
-
-                <div className={styles.fieldGrid}>
-                  <div className={styles.field}>
-                    <label htmlFor="customerEmail">E-mail cím</label>
-                    <input
-                      id="customerEmail"
-                      name="customerEmail"
-                      type="email"
-                      placeholder="pelda@email.hu"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label htmlFor="customerPhone">Telefonszám</label>
-                    <input
-                      id="customerPhone"
-                      name="customerPhone"
-                      type="tel"
-                      placeholder="+36 ..."
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.field}>
-                  <label htmlFor="companyName">
-                    Cégnév <span>(opcionális)</span>
-                  </label>
-
-                  <input
-                    id="companyName"
-                    name="companyName"
-                    type="text"
-                    placeholder="Cégnév"
-                  />
-                </div>
-
-                <div className={styles.sectionHeading}>
-                  <span className={styles.sectionNumber}>02</span>
-
-                  <div>
-                    <span className={styles.label}>Szállítás</span>
-                    <h2>Szállítási cím</h2>
-                  </div>
-                </div>
-
-                <div className={styles.fieldGrid}>
-                  <div className={styles.field}>
-                    <label htmlFor="postalCode">Irányítószám</label>
-                    <input
-                      id="postalCode"
-                      name="postalCode"
-                      type="text"
-                      placeholder="4130"
-                      required
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label htmlFor="city">Település</label>
-                    <input
-                      id="city"
-                      name="city"
-                      type="text"
-                      placeholder="Derecske"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.field}>
-                  <label htmlFor="streetAddress">Utca, házszám</label>
-                  <input
-                    id="streetAddress"
-                    name="streetAddress"
-                    type="text"
-                    placeholder="Kossuth Lajos u. 26."
-                    required
-                  />
-                </div>
-
-                <div className={styles.field}>
-                  <label htmlFor="message">
-                    Megjegyzés <span>(opcionális)</span>
-                  </label>
-
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    placeholder="Megjegyzés a rendeléshez..."
-                  />
-                </div>
-
-                <button type="submit" className={styles.submitButton}>
-                  Rendelés elküldése
-                </button>
-              </form>
+              <CheckoutForm />
             </div>
 
             <aside className={styles.summary}>
