@@ -32,7 +32,7 @@ const initialFormData: CheckoutFormData = {
 export default function CheckoutForm() {
   const router = useRouter();
 
-  const { items, totalItems, totalPrice, clearCart } = useCart();
+  const { items, totalItems, totalPrice } = useCart();
 
   const [formData, setFormData] = useState<CheckoutFormData>(initialFormData);
 
@@ -47,9 +47,11 @@ export default function CheckoutForm() {
       event.target instanceof HTMLInputElement &&
       event.target.type === "checkbox"
     ) {
+      const checked = event.target.checked;
+
       setFormData((current) => ({
         ...current,
-        [name]: (event.target as HTMLInputElement).checked,
+        [name]: checked,
       }));
 
       return;
@@ -118,6 +120,13 @@ export default function CheckoutForm() {
       }),
     );
 
+    /*
+     * Ezzel jelezzük a CheckoutPage-nek,
+     * hogy szándékosan hagyjuk el a checkoutot
+     * egy sikeres rendelés miatt.
+     */
+    sessionStorage.setItem("seres-order-submitted", "true");
+
     console.log("Rendelési adatok:", {
       orderId,
       formData,
@@ -126,7 +135,6 @@ export default function CheckoutForm() {
       totalPrice,
     });
 
-    clearCart();
     router.push("/order-success");
   };
 

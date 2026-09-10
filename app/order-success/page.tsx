@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/layout/Container";
+import { useCart } from "@/components/cart/CartProvider";
 import { CartItem } from "@/types/cart";
 import styles from "./OrderSuccessPage.module.css";
 
@@ -14,22 +15,36 @@ interface LastOrder {
 }
 
 export default function OrderSuccessPage() {
+  const { clearCart } = useCart();
+
   const [order, setOrder] = useState<LastOrder | null>(null);
 
   useEffect(() => {
     const savedOrder = sessionStorage.getItem("seres-last-order");
 
-    if (!savedOrder) {
-      return;
+    if (savedOrder) {
+      try {
+        const parsedOrder = JSON.parse(savedOrder) as LastOrder;
+
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setOrder(parsedOrder);
+      } catch {
+        setOrder(null);
+      }
     }
 
-    try {
-      const parsedOrder = JSON.parse(savedOrder) as LastOrder;
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setOrder(parsedOrder);
-    } catch {
-      setOrder(null);
-    }
+    clearCart();
+
+    /*
+     * A flaget csak akkor töröljük,
+     * amikor már elhagyjuk a sikeres rendelés oldalt.
+     */
+    return () => {
+      sessionStorage.removeItem("seres-order-submitted");
+    };
+
+    // Csak az oldal első betöltésekor fusson.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

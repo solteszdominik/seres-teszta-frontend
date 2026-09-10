@@ -11,6 +11,7 @@ import CheckoutForm from "@/components/checkout/CheckoutForm";
 
 export default function CheckoutPage() {
   const router = useRouter();
+
   const { items, totalItems, totalPrice } = useCart();
 
   useEffect(() => {
@@ -20,12 +21,27 @@ export default function CheckoutPage() {
   }, [router]);
 
   useEffect(() => {
-    if (shopConfig.enabled && items.length === 0) {
+    if (!shopConfig.enabled) {
+      return;
+    }
+
+    const orderSubmitted =
+      sessionStorage.getItem("seres-order-submitted") === "true";
+
+    if (items.length === 0 && !orderSubmitted) {
       router.replace("/cart");
     }
   }, [items, router]);
 
-  if (!shopConfig.enabled || items.length === 0) {
+  if (!shopConfig.enabled) {
+    return null;
+  }
+
+  /*
+   * Sikeres rendelés közben rövid ideig már lehet üres
+   * a kosár, ezért ilyenkor nem renderelünk új tartalmat.
+   */
+  if (items.length === 0) {
     return null;
   }
 
@@ -34,7 +50,9 @@ export default function CheckoutPage() {
       <section className={styles.hero}>
         <Container>
           <span className={styles.eyebrow}>Rendelés</span>
+
           <h1>Rendelési adatok.</h1>
+
           <p>
             Add meg az adataidat, ellenőrizd a kosarad tartalmát, majd küldd el
             a rendelést.
@@ -51,6 +69,7 @@ export default function CheckoutPage() {
 
                 <div>
                   <span className={styles.label}>Vásárló adatai</span>
+
                   <h2>Elérhetőségek</h2>
                 </div>
               </div>
@@ -62,6 +81,7 @@ export default function CheckoutPage() {
               <div className={styles.summaryTop}>
                 <div>
                   <span className={styles.label}>Kosár</span>
+
                   <h2>Rendelés összesítő</h2>
                 </div>
 
@@ -75,6 +95,7 @@ export default function CheckoutPage() {
                   <div key={product.id} className={styles.item}>
                     <div>
                       <strong>{product.name}</strong>
+
                       <span>
                         {quantity} × {product.price.toLocaleString("hu-HU")} Ft
                       </span>
@@ -89,11 +110,13 @@ export default function CheckoutPage() {
 
               <div className={styles.summaryRow}>
                 <span>Termékek</span>
+
                 <strong>{totalItems} db</strong>
               </div>
 
               <div className={styles.totalRow}>
                 <span>Összesen</span>
+
                 <strong>{totalPrice.toLocaleString("hu-HU")} Ft</strong>
               </div>
 
