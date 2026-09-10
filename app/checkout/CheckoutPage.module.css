@@ -1,0 +1,290 @@
+.hero {
+  padding: 72px 0 64px;
+  background: var(--color-eggshell);
+}
+
+.eyebrow,
+.label {
+  display: inline-block;
+  color: var(--color-yolk-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.hero p {
+  max-width: 620px;
+  margin-top: 20px;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.checkoutSection {
+  padding: var(--section-spacing) 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.formColumn {
+  min-width: 0;
+}
+
+.sectionHeading {
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.sectionHeading:not(:first-child) {
+  margin-top: 54px;
+}
+
+.sectionNumber {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-yolk);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.sectionHeading h2,
+.summary h2 {
+  margin-top: 5px;
+  font-size: 1.65rem;
+  letter-spacing: -0.035em;
+}
+
+.form {
+  padding: 32px;
+  border: 1px solid rgba(24, 23, 19, 0.08);
+  border-radius: 26px;
+  background: var(--color-white);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field + .field,
+.fieldGrid + .field,
+.field + .fieldGrid {
+  margin-top: 20px;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field label {
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.field label span {
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(24, 23, 19, 0.13);
+  border-radius: 12px;
+  outline: none;
+  background: var(--color-flour);
+  color: var(--color-black);
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.field input {
+  min-height: 50px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--color-yolk-dark);
+  background: var(--color-white);
+}
+
+.submitButton {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 30px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-weight: 800;
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.submitButton:hover {
+  background: var(--color-yolk-dark);
+  transform: translateY(-1px);
+}
+
+.summary {
+  position: sticky;
+  top: 110px;
+  padding: 30px;
+  border-radius: 26px;
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.summaryTop {
+  padding-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.editCart {
+  flex-shrink: 0;
+  color: var(--color-yolk);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.editCart:hover {
+  text-decoration: underline;
+}
+
+.items {
+  padding: 12px 0;
+}
+
+.item {
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item span {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.8rem;
+}
+
+.item > strong {
+  flex-shrink: 0;
+}
+
+.summaryRow,
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.summaryRow {
+  padding: 18px 0;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.totalRow {
+  padding: 20px 0 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.2rem;
+}
+
+.shippingNote {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    padding: 56px 0 48px;
+  }
+
+  .checkoutSection {
+    padding: 56px 0;
+  }
+
+  .form {
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+
+  .fieldGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .fieldGrid + .field,
+  .field + .fieldGrid {
+    margin-top: 20px;
+  }
+
+  .summary {
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+
+  .summaryTop {
+    flex-direction: column;
+  }
+
+  .item {
+    gap: 12px;
+  }
+}

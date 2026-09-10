@@ -4,8 +4,13 @@ import Link from "next/link";
 import Container from "@/components/layout/Container";
 import { useCart } from "@/components/cart/CartProvider";
 import styles from "./CartPage.module.css";
+import { shopConfig } from "@/config/shop";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function CartPage() {
+  const router = useRouter();
+
   const {
     items,
     totalItems,
@@ -14,6 +19,16 @@ export default function CartPage() {
     removeFromCart,
     clearCart,
   } = useCart();
+
+  useEffect(() => {
+    if (!shopConfig.enabled) {
+      router.replace("/products");
+    }
+  }, [router]);
+
+  if (!shopConfig.enabled) {
+    return null;
+  }
 
   if (items.length === 0) {
     return (

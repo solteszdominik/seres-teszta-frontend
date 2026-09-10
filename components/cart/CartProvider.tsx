@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { Product } from "@/types/product";
 import { CartItem } from "@/types/cart";
 
@@ -20,8 +27,39 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
+const CART_STORAGE_KEY = "seres-cart";
+
 export default function CartProvider({ children }: CartProviderProps) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart) as CartItem[];
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setItems(parsedCart);
+      }
+    } catch (error) {
+      console.error("A kosár betöltése sikertelen:", error);
+    } finally {
+      setIsInitialized(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialized) {
+      return;
+    }
+
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    } catch (error) {
+      console.error("A kosár mentése sikertelen:", error);
+    }
+  }, [items, isInitialized]);
 
   const addToCart = (product: Product, quantity = 1) => {
     setItems((currentItems) => {
@@ -92,7 +130,7 @@ export default function CartProvider({ children }: CartProviderProps) {
     [items],
   );
 
-  const value = {
+  const value: CartContextValue = {
     items,
     totalItems,
     totalPrice,
